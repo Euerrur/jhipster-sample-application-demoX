@@ -1,0 +1,83 @@
+
+application {
+  entities Classd, Classroom, Student, Course, Teacher, ChangeHistory filter all
+}
+
+// jhipster import-jdl  /Users/jojo/Documents/CodeSpace/deliver/course-teaching-system/jdl/system-1-0.jdl --creation-timestamp  --force --prettier-java
+
+/** 课程 */
+entity Course {
+	/** 名称 */
+    name   String  required
+  	/** 简介 */
+    introduce   String  required
+    /** 上课时间 */
+    classTime   Instant  required
+}
+
+/** 教室 */
+entity Classroom {
+	/** 名称 */
+    name   String  required
+  	/** 地址 */
+    address   String  required
+}
+
+
+/** 班级 */
+entity Classd {
+	/** 名称 */
+    name   String  required
+}
+
+/** 大一/大二/大三/大四 */
+enum GradeLevelType {
+   ONE,
+   TWO,
+   THREE,
+   FOUR
+}
+
+/** 学生 */
+entity Student {
+	/** 名称 */
+    name   String  required
+    /** 年龄 */
+    age   Integer  required
+    /** 学号 */
+    number   Integer  required
+    /** 年级 */
+    grade  GradeLevelType  required
+}
+
+/** 老师 */
+entity Teacher {
+	/** 名称 */
+    name   String  required
+    /** 年龄 */
+    age   Integer  required
+    /** 擅长专业 */
+    professional  String  required
+}
+
+/** 变更历史记录 */
+entity ChangeHistory {
+	  /** 变更主体 id */
+    id  Long  required
+    /** 描述 */
+    describe String required
+}
+
+
+relationship ManyToMany{
+  /** 教室关联课程  */
+  Classroom to Course
+  /** 老师关联课程  */
+  Teacher to Course
+  /** 课程关联班级  */
+  Course to Classd
+   /** 学生关联班级  */
+  Student to Classd
+}
+
+    

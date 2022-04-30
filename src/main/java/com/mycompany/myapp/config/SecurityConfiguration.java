@@ -1,6 +1,7 @@
 package com.mycompany.myapp.config;
 
 import com.mycompany.myapp.security.*;
+import com.mycompany.myapp.security.jwt.*;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Import;
 import org.springframework.http.HttpMethod;
@@ -9,17 +10,15 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityCustomizer;
+import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
-import org.springframework.security.web.authentication.RememberMeServices;
-import org.springframework.security.web.csrf.CookieCsrfTokenRepository;
-import org.springframework.security.web.csrf.CsrfFilter;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.security.web.header.writers.ReferrerPolicyHeaderWriter;
 import org.springframework.web.filter.CorsFilter;
 import org.zalando.problem.spring.web.advice.security.SecurityProblemSupport;
 import tech.jhipster.config.JHipsterProperties;
-import tech.jhipster.security.*;
 
 @EnableWebSecurity
 @EnableGlobalMethodSecurity(prePostEnabled = true, securedEnabled = true)
@@ -28,36 +27,21 @@ public class SecurityConfiguration {
 
     private final JHipsterProperties jHipsterProperties;
 
-    private final RememberMeServices rememberMeServices;
+    private final TokenProvider tokenProvider;
 
     private final CorsFilter corsFilter;
     private final SecurityProblemSupport problemSupport;
 
     public SecurityConfiguration(
-        RememberMeServices rememberMeServices,
+        TokenProvider tokenProvider,
         CorsFilter corsFilter,
         JHipsterProperties jHipsterProperties,
         SecurityProblemSupport problemSupport
     ) {
-        this.rememberMeServices = rememberMeServices;
+        this.tokenProvider = tokenProvider;
         this.corsFilter = corsFilter;
         this.problemSupport = problemSupport;
         this.jHipsterProperties = jHipsterProperties;
-    }
-
-    @Bean
-    public AjaxAuthenticationSuccessHandler ajaxAuthenticationSuccessHandler() {
-        return new AjaxAuthenticationSuccessHandler();
-    }
-
-    @Bean
-    public AjaxAuthenticationFailureHandler ajaxAuthenticationFailureHandler() {
-        return new AjaxAuthenticationFailureHandler();
-    }
-
-    @Bean
-    public AjaxLogoutSuccessHandler ajaxLogoutSuccessHandler() {
-        return new AjaxLogoutSuccessHandler();
     }
 
     @Bean
@@ -84,28 +68,11 @@ public class SecurityConfiguration {
         // @formatter:off
         http
             .csrf()
-            .csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse())
-        .and()
-            .addFilterBefore(corsFilter, CsrfFilter.class)
+            .disable()
+            .addFilterBefore(corsFilter, UsernamePasswordAuthenticationFilter.class)
             .exceptionHandling()
                 .authenticationEntryPoint(problemSupport)
                 .accessDeniedHandler(problemSupport)
-        .and()
-            .rememberMe()
-            .rememberMeServices(rememberMeServices)
-            .rememberMeParameter("remember-me")
-            .key(jHipsterProperties.getSecurity().getRememberMe().getKey())
-        .and()
-            .formLogin()
-            .loginProcessingUrl("/api/authentication")
-            .successHandler(ajaxAuthenticationSuccessHandler())
-            .failureHandler(ajaxAuthenticationFailureHandler())
-            .permitAll()
-        .and()
-            .logout()
-            .logoutUrl("/api/logout")
-            .logoutSuccessHandler(ajaxLogoutSuccessHandler())
-            .permitAll()
         .and()
             .headers()
             .contentSecurityPolicy(jHipsterProperties.getSecurity().getContentSecurityPolicy())
@@ -116,6 +83,9 @@ public class SecurityConfiguration {
         .and()
             .frameOptions()
             .deny()
+        .and()
+            .sessionManagement()
+            .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
         .and()
             .authorizeRequests()
             .antMatchers("/api/authenticate").permitAll()
@@ -129,8 +99,16 @@ public class SecurityConfiguration {
             .antMatchers("/management/health/**").permitAll()
             .antMatchers("/management/info").permitAll()
             .antMatchers("/management/prometheus").permitAll()
-            .antMatchers("/management/**").hasAuthority(AuthoritiesConstants.ADMIN);
+            .antMatchers("/management/**").hasAuthority(AuthoritiesConstants.ADMIN)
+        .and()
+            .httpBasic()
+        .and()
+            .apply(securityConfigurerAdapter());
         return http.build();
         // @formatter:on
+    }
+
+    private JWTConfigurer securityConfigurerAdapter() {
+        return new JWTConfigurer(tokenProvider);
     }
 }

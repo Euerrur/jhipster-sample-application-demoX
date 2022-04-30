@@ -1,0 +1,87 @@
+<div>
+  <h2 id="page-heading" data-cy="ClassroomHeading">
+    <span jhiTranslate="jhipsterApp.classroom.home.title">Classrooms</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info me-2" (click)="loadAll()" [disabled]="isLoading">
+        <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
+        <span jhiTranslate="jhipsterApp.classroom.home.refreshListLabel">Refresh List</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-classroom"
+        [routerLink]="['/classroom/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span jhiTranslate="jhipsterApp.classroom.home.createLabel"> Create a new Classroom </span>
+      </button>
+    </div>
+  </h2>
+
+  <jhi-alert-error></jhi-alert-error>
+
+  <jhi-alert></jhi-alert>
+
+  <div class="alert alert-warning" id="no-result" *ngIf="classrooms?.length === 0">
+    <span jhiTranslate="jhipsterApp.classroom.home.notFound">No classrooms found</span>
+  </div>
+
+  <div class="table-responsive" id="entities" *ngIf="classrooms && classrooms.length > 0">
+    <table class="table table-striped" aria-describedby="page-heading">
+      <thead>
+        <tr>
+          <th scope="col"><span jhiTranslate="global.field.id">ID</span></th>
+          <th scope="col"><span jhiTranslate="jhipsterApp.classroom.name">Name</span></th>
+          <th scope="col"><span jhiTranslate="jhipsterApp.classroom.address">Address</span></th>
+          <th scope="col"><span jhiTranslate="jhipsterApp.classroom.course">Course</span></th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let classroom of classrooms; trackBy: trackId" data-cy="entityTable">
+          <td>
+            <a [routerLink]="['/classroom', classroom.id, 'view']">{{ classroom.id }}</a>
+          </td>
+          <td>{{ classroom.name }}</td>
+          <td>{{ classroom.address }}</td>
+          <td>
+            <span *ngFor="let course of classroom.courses; let last = last">
+              <a class="form-control-static" [routerLink]="['/course', course.id, 'view']">{{ course.id }}</a
+              >{{ last ? '' : ', ' }}
+            </span>
+          </td>
+          <td class="text-end">
+            <div class="btn-group">
+              <button
+                type="submit"
+                [routerLink]="['/classroom', classroom.id, 'view']"
+                class="btn btn-info btn-sm"
+                data-cy="entityDetailsButton"
+              >
+                <fa-icon icon="eye"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+              </button>
+
+              <button
+                type="submit"
+                [routerLink]="['/classroom', classroom.id, 'edit']"
+                class="btn btn-primary btn-sm"
+                data-cy="entityEditButton"
+              >
+                <fa-icon icon="pencil-alt"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+              </button>
+
+              <button type="submit" (click)="delete(classroom)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                <fa-icon icon="times"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

@@ -1,0 +1,38 @@
+{
+  "applications": ["jhipster"],
+  "changelogDate": "20220430064959",
+  "dto": "no",
+  "embedded": false,
+  "entityTableName": "classroom",
+  "fields": [
+    {
+      "fieldName": "name",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"],
+      "javadoc": "名称"
+    },
+    {
+      "fieldName": "address",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"],
+      "javadoc": "地址"
+    }
+  ],
+  "fluentMethods": true,
+  "javadoc": "教室",
+  "jpaMetamodelFiltering": true,
+  "name": "Classroom",
+  "pagination": "no",
+  "readOnly": false,
+  "relationships": [
+    {
+      "javadoc": "教室关联课程",
+      "otherEntityName": "course",
+      "otherEntityRelationshipName": "classroom",
+      "ownerSide": true,
+      "relationshipName": "course",
+      "relationshipType": "many-to-many"
+    }
+  ],
+  "service": "serviceClass"
+}

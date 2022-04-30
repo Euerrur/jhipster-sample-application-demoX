@@ -92,7 +92,7 @@ management:
 
 spring:
   application:
-    name: jhipsterSampleApplicationDemoX
+    name: jhipster
   profiles:
     # The commented value for `active` can be replaced with valid Spring profiles to load.
     # Otherwise, it will be filled in by maven when building the JAR file
@@ -139,13 +139,13 @@ spring:
       matching-strategy: ant_path_matcher
   task:
     execution:
-      thread-name-prefix: jhipster-sample-application-demo-x-task-
+      thread-name-prefix: jhipster-task-
       pool:
         core-size: 2
         max-size: 50
         queue-capacity: 10000
     scheduling:
-      thread-name-prefix: jhipster-sample-application-demo-x-scheduling-
+      thread-name-prefix: jhipster-scheduling-
       pool:
         size: 2
   thymeleaf:
@@ -176,22 +176,22 @@ info:
 
 jhipster:
   clientApp:
-    name: 'jhipsterSampleApplicationDemoXApp'
+    name: 'jhipsterApp'
   # By default CORS is disabled. Uncomment to enable.
   # cors:
   #   allowed-origins: "http://localhost:8100,http://localhost:9000"
   #   allowed-methods: "*"
   #   allowed-headers: "*"
-  #   exposed-headers: "Link,X-Total-Count,X-${jhipster.clientApp.name}-alert,X-${jhipster.clientApp.name}-error,X-${jhipster.clientApp.name}-params"
+  #   exposed-headers: "Authorization,Link,X-Total-Count,X-${jhipster.clientApp.name}-alert,X-${jhipster.clientApp.name}-error,X-${jhipster.clientApp.name}-params"
   #   allow-credentials: true
   #   max-age: 1800
   mail:
-    from: jhipsterSampleApplicationDemoX@localhost
+    from: jhipster@localhost
   api-docs:
     default-include-pattern: ${server.servlet.context-path:}/api/**
     management-include-pattern: ${server.servlet.context-path:}/management/**
-    title: Jhipster Sample Application Demo X API
-    description: Jhipster Sample Application Demo X API documentation
+    title: JHipster API
+    description: JHipster API documentation
     version: 0.0.1
     terms-of-service-url:
     contact-name:

@@ -1,0 +1,119 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2 id="jhi-course-heading" data-cy="CourseCreateUpdateHeading" jhiTranslate="jhipsterApp.course.home.createOrEditLabel">
+        Create or edit a Course
+      </h2>
+
+      <div>
+        <jhi-alert-error></jhi-alert-error>
+
+        <div class="row mb-3" [hidden]="editForm.get('id')!.value == null">
+          <label class="form-label" jhiTranslate="global.field.id" for="field_id">ID</label>
+          <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+        </div>
+
+        <div class="row mb-3">
+          <label
+            class="form-label"
+            jhiTranslate="jhipsterApp.course.name"
+            for="field_name"
+            [ngbTooltip]="'jhipsterApp.course.help.name' | translate"
+            >Name</label
+          >
+          <input type="text" class="form-control" name="name" id="field_name" data-cy="name" formControlName="name" />
+          <div *ngIf="editForm.get('name')!.invalid && (editForm.get('name')!.dirty || editForm.get('name')!.touched)">
+            <small class="form-text text-danger" *ngIf="editForm.get('name')?.errors?.required" jhiTranslate="entity.validation.required">
+              This field is required.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label
+            class="form-label"
+            jhiTranslate="jhipsterApp.course.introduce"
+            for="field_introduce"
+            [ngbTooltip]="'jhipsterApp.course.help.introduce' | translate"
+            >Introduce</label
+          >
+          <input type="text" class="form-control" name="introduce" id="field_introduce" data-cy="introduce" formControlName="introduce" />
+          <div *ngIf="editForm.get('introduce')!.invalid && (editForm.get('introduce')!.dirty || editForm.get('introduce')!.touched)">
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('introduce')?.errors?.required"
+              jhiTranslate="entity.validation.required"
+            >
+              This field is required.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label
+            class="form-label"
+            jhiTranslate="jhipsterApp.course.classTime"
+            for="field_classTime"
+            [ngbTooltip]="'jhipsterApp.course.help.classTime' | translate"
+            >Class Time</label
+          >
+          <div class="d-flex">
+            <input
+              id="field_classTime"
+              data-cy="classTime"
+              type="datetime-local"
+              class="form-control"
+              name="classTime"
+              formControlName="classTime"
+              placeholder="YYYY-MM-DD HH:mm"
+            />
+          </div>
+          <div *ngIf="editForm.get('classTime')!.invalid && (editForm.get('classTime')!.dirty || editForm.get('classTime')!.touched)">
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('classTime')?.errors?.required"
+              jhiTranslate="entity.validation.required"
+            >
+              This field is required.
+            </small>
+            <small
+              class="form-text text-danger"
+              [hidden]="!editForm.get('classTime')?.errors?.ZonedDateTimelocal"
+              jhiTranslate="entity.validation.ZonedDateTimelocal"
+            >
+              This field should be a date and time.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label jhiTranslate="jhipsterApp.course.classd" for="field_classds">Classd</label>
+          <select class="form-control" id="field_classds" data-cy="classd" multiple name="classds" formControlName="classds">
+            <option
+              [ngValue]="getSelectedClassd(classdOption, editForm.get('classds')!.value)"
+              *ngFor="let classdOption of classdsSharedCollection; trackBy: trackClassdById"
+            >
+              {{ classdOption.id }}
+            </option>
+          </select>
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

@@ -1,0 +1,38 @@
+{
+  "applications": ["jhipster"],
+  "changelogDate": "20220430064958",
+  "dto": "no",
+  "embedded": false,
+  "entityTableName": "classd",
+  "fields": [
+    {
+      "fieldName": "name",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"],
+      "javadoc": "名称"
+    }
+  ],
+  "fluentMethods": true,
+  "javadoc": "班级",
+  "jpaMetamodelFiltering": true,
+  "name": "Classd",
+  "pagination": "no",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityName": "course",
+      "otherEntityRelationshipName": "classd",
+      "ownerSide": false,
+      "relationshipName": "course",
+      "relationshipType": "many-to-many"
+    },
+    {
+      "otherEntityName": "student",
+      "otherEntityRelationshipName": "classd",
+      "ownerSide": false,
+      "relationshipName": "student",
+      "relationshipType": "many-to-many"
+    }
+  ],
+  "service": "serviceClass"
+}

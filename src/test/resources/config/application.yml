@@ -18,11 +18,11 @@ spring:
     # Uncomment the following line to enable tests against production database type rather than H2, using Testcontainers
     #active: testcontainers
   application:
-    name: jhipsterSampleApplicationDemoX
+    name: jhipster
 
   datasource:
     type: com.zaxxer.hikari.HikariDataSource
-    url: jdbc:h2:mem:jhipstersampleapplicationdemox;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE
+    url: jdbc:h2:mem:jhipster;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE
     name:
     username:
     password:
@@ -61,13 +61,13 @@ spring:
     basename: i18n/messages
   task:
     execution:
-      thread-name-prefix: jhipster-sample-application-demo-x-task-
+      thread-name-prefix: jhipster-task-
       pool:
         core-size: 1
         max-size: 50
         queue-capacity: 10000
     scheduling:
-      thread-name-prefix: jhipster-sample-application-demo-x-scheduling-
+      thread-name-prefix: jhipster-scheduling-
       pool:
         size: 20
   thymeleaf:
@@ -84,7 +84,7 @@ server:
 # ===================================================================
 jhipster:
   clientApp:
-    name: 'jhipsterSampleApplicationDemoXApp'
+    name: 'jhipsterApp'
   logging:
     # To test json console appender
     use-json-format: false
@@ -97,9 +97,12 @@ jhipster:
     from: test@localhost
     base-url: http://127.0.0.1:8080
   security:
-    remember-me:
-      # security key (this key should be unique for your application, and kept secret)
-      key: 62a92d358171102730810bdbc192ad3726e77438e636989860d888f069dee1cf01ff6f8ccf1ef36b60ebe8bda1e2d3b5e1e9
+    authentication:
+      jwt:
+        # This token must be encoded using Base64 (you can type `echo 'secret-key'|base64` on your command line)
+        base64-secret: OWY0MjFkZDc5YWY2OGI3YzEwNTA1YzIwZDY3OTljZDA2ZmY1ZGZkN2U1ZjYyMjFjNGY2ODdhZTkyMjI5OWNiNmQ4YTFhOTYyZmMzOGM4MzNmYTkxYzYxYTg1MDNmOWQwMDVkMWM4ODU0NTdmZDBiZjhhYTc5NDQ3Zjg2YmFjNGY=
+        # Token is valid 24 hours
+        token-validity-in-seconds: 86400
 # ===================================================================
 # Application specific properties
 # Add your own application properties here, see the ApplicationProperties class

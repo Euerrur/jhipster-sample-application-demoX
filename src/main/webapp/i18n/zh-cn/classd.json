@@ -1,0 +1,29 @@
+{
+  "jhipsterApp": {
+    "classd": {
+      "home": {
+        "title": "Classds",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "创建新 Classd",
+        "createOrEditLabel": "创建或编辑 Classd",
+        "notFound": "No Classds found"
+      },
+      "created": "Classd {{ param }} 创建成功",
+      "updated": "Classd {{ param }} 更新成功",
+      "deleted": "Classd {{ param }} 删除成功",
+      "delete": {
+        "question": "你确定要删除 Classd {{ id }} 吗？"
+      },
+      "detail": {
+        "title": "Classd"
+      },
+      "id": "ID",
+      "name": "Name",
+      "course": "Course",
+      "student": "Student",
+      "help": {
+        "name": "名称"
+      }
+    }
+  }
+}

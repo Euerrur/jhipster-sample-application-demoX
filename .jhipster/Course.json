@@ -1,0 +1,58 @@
+{
+  "applications": ["jhipster"],
+  "changelogDate": "20220430065001",
+  "dto": "no",
+  "embedded": false,
+  "entityTableName": "course",
+  "fields": [
+    {
+      "fieldName": "name",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"],
+      "javadoc": "名称"
+    },
+    {
+      "fieldName": "introduce",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"],
+      "javadoc": "简介"
+    },
+    {
+      "fieldName": "classTime",
+      "fieldType": "Instant",
+      "fieldValidateRules": ["required"],
+      "javadoc": "上课时间"
+    }
+  ],
+  "fluentMethods": true,
+  "javadoc": "课程",
+  "jpaMetamodelFiltering": true,
+  "name": "Course",
+  "pagination": "no",
+  "readOnly": false,
+  "relationships": [
+    {
+      "javadoc": "课程关联班级",
+      "otherEntityName": "classd",
+      "otherEntityRelationshipName": "course",
+      "ownerSide": true,
+      "relationshipName": "classd",
+      "relationshipType": "many-to-many"
+    },
+    {
+      "otherEntityName": "classroom",
+      "otherEntityRelationshipName": "course",
+      "ownerSide": false,
+      "relationshipName": "classroom",
+      "relationshipType": "many-to-many"
+    },
+    {
+      "otherEntityName": "teacher",
+      "otherEntityRelationshipName": "course",
+      "ownerSide": false,
+      "relationshipName": "teacher",
+      "relationshipType": "many-to-many"
+    }
+  ],
+  "service": "serviceClass"
+}

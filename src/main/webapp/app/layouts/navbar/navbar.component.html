@@ -2,7 +2,7 @@
   <div class="container-fluid">
     <a class="navbar-brand logo" routerLink="/" (click)="collapseNavbar()">
       <span class="logo-img"></span>
-      <span jhiTranslate="global.title" class="navbar-title">JhipsterSampleApplicationDemoX</span>
+      <span jhiTranslate="global.title" class="navbar-title">Jhipster</span>
       <span class="navbar-version">{{ version }}</span>
     </a>
     <a
@@ -43,6 +43,78 @@
             </span>
           </a>
           <ul class="dropdown-menu" ngbDropdownMenu aria-labelledby="entity-menu">
+            <li>
+              <a
+                class="dropdown-item"
+                routerLink="classd"
+                routerLinkActive="active"
+                [routerLinkActiveOptions]="{ exact: true }"
+                (click)="collapseNavbar()"
+              >
+                <fa-icon icon="asterisk" [fixedWidth]="true"></fa-icon>
+                <span jhiTranslate="global.menu.entities.classd">Classd</span>
+              </a>
+            </li>
+            <li>
+              <a
+                class="dropdown-item"
+                routerLink="classroom"
+                routerLinkActive="active"
+                [routerLinkActiveOptions]="{ exact: true }"
+                (click)="collapseNavbar()"
+              >
+                <fa-icon icon="asterisk" [fixedWidth]="true"></fa-icon>
+                <span jhiTranslate="global.menu.entities.classroom">Classroom</span>
+              </a>
+            </li>
+            <li>
+              <a
+                class="dropdown-item"
+                routerLink="student"
+                routerLinkActive="active"
+                [routerLinkActiveOptions]="{ exact: true }"
+                (click)="collapseNavbar()"
+              >
+                <fa-icon icon="asterisk" [fixedWidth]="true"></fa-icon>
+                <span jhiTranslate="global.menu.entities.student">Student</span>
+              </a>
+            </li>
+            <li>
+              <a
+                class="dropdown-item"
+                routerLink="course"
+                routerLinkActive="active"
+                [routerLinkActiveOptions]="{ exact: true }"
+                (click)="collapseNavbar()"
+              >
+                <fa-icon icon="asterisk" [fixedWidth]="true"></fa-icon>
+                <span jhiTranslate="global.menu.entities.course">Course</span>
+              </a>
+            </li>
+            <li>
+              <a
+                class="dropdown-item"
+                routerLink="teacher"
+                routerLinkActive="active"
+                [routerLinkActiveOptions]="{ exact: true }"
+                (click)="collapseNavbar()"
+              >
+                <fa-icon icon="asterisk" [fixedWidth]="true"></fa-icon>
+                <span jhiTranslate="global.menu.entities.teacher">Teacher</span>
+              </a>
+            </li>
+            <li>
+              <a
+                class="dropdown-item"
+                routerLink="change-history"
+                routerLinkActive="active"
+                [routerLinkActiveOptions]="{ exact: true }"
+                (click)="collapseNavbar()"
+              >
+                <fa-icon icon="asterisk" [fixedWidth]="true"></fa-icon>
+                <span jhiTranslate="global.menu.entities.changeHistory">Change History</span>
+              </a>
+            </li>
             <!-- jhipster-needle-add-entity-to-menu - JHipster will add entities to the menu here -->
           </ul>
         </li>
@@ -164,12 +236,6 @@
               >
                 <fa-icon icon="lock" [fixedWidth]="true"></fa-icon>
                 <span jhiTranslate="global.menu.account.password">Password</span>
-              </a>
-            </li>
-            <li *ngSwitchCase="true">
-              <a class="dropdown-item" routerLink="account/sessions" routerLinkActive="active" (click)="collapseNavbar()">
-                <fa-icon icon="cloud" [fixedWidth]="true"></fa-icon>
-                <span jhiTranslate="global.menu.account.sessions">Sessions</span>
               </a>
             </li>
             <li *ngSwitchCase="true">

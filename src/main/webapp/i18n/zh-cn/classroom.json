@@ -1,0 +1,30 @@
+{
+  "jhipsterApp": {
+    "classroom": {
+      "home": {
+        "title": "Classrooms",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "创建新 Classroom",
+        "createOrEditLabel": "创建或编辑 Classroom",
+        "notFound": "No Classrooms found"
+      },
+      "created": "Classroom {{ param }} 创建成功",
+      "updated": "Classroom {{ param }} 更新成功",
+      "deleted": "Classroom {{ param }} 删除成功",
+      "delete": {
+        "question": "你确定要删除 Classroom {{ id }} 吗？"
+      },
+      "detail": {
+        "title": "Classroom"
+      },
+      "id": "ID",
+      "name": "Name",
+      "address": "Address",
+      "course": "Course",
+      "help": {
+        "name": "名称",
+        "address": "地址"
+      }
+    }
+  }
+}

@@ -1,0 +1,29 @@
+{
+  "applications": ["jhipster"],
+  "changelogDate": "20220430065003",
+  "dto": "no",
+  "embedded": false,
+  "entityTableName": "change_history",
+  "fields": [
+    {
+      "fieldName": "id",
+      "fieldType": "Long",
+      "fieldValidateRules": ["required"],
+      "javadoc": "变更主体 id"
+    },
+    {
+      "fieldName": "describe",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"],
+      "javadoc": "描述"
+    }
+  ],
+  "fluentMethods": true,
+  "javadoc": "变更历史记录",
+  "jpaMetamodelFiltering": true,
+  "name": "ChangeHistory",
+  "pagination": "no",
+  "readOnly": false,
+  "relationships": [],
+  "service": "serviceClass"
+}

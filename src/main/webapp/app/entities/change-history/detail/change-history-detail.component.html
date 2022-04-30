@@ -1,0 +1,36 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <div *ngIf="changeHistory">
+      <h2 data-cy="changeHistoryDetailsHeading"><span jhiTranslate="jhipsterApp.changeHistory.detail.title">Change History</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="jhipsterApp.changeHistory.id" [ngbTooltip]="'jhipsterApp.changeHistory.help.id' | translate">Id</span></dt>
+        <dd>
+          <span>{{ changeHistory.id }}</span>
+        </dd>
+        <dt>
+          <span jhiTranslate="jhipsterApp.changeHistory.describe" [ngbTooltip]="'jhipsterApp.changeHistory.help.describe' | translate"
+            >Describe</span
+          >
+        </dt>
+        <dd>
+          <span>{{ changeHistory.describe }}</span>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/change-history', changeHistory.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

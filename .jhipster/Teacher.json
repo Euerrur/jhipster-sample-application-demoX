@@ -1,0 +1,44 @@
+{
+  "applications": ["jhipster"],
+  "changelogDate": "20220430065002",
+  "dto": "no",
+  "embedded": false,
+  "entityTableName": "teacher",
+  "fields": [
+    {
+      "fieldName": "name",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"],
+      "javadoc": "名称"
+    },
+    {
+      "fieldName": "age",
+      "fieldType": "Integer",
+      "fieldValidateRules": ["required"],
+      "javadoc": "年龄"
+    },
+    {
+      "fieldName": "professional",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"],
+      "javadoc": "擅长专业"
+    }
+  ],
+  "fluentMethods": true,
+  "javadoc": "老师",
+  "jpaMetamodelFiltering": true,
+  "name": "Teacher",
+  "pagination": "no",
+  "readOnly": false,
+  "relationships": [
+    {
+      "javadoc": "老师关联课程",
+      "otherEntityName": "course",
+      "otherEntityRelationshipName": "teacher",
+      "ownerSide": true,
+      "relationshipName": "course",
+      "relationshipType": "many-to-many"
+    }
+  ],
+  "service": "serviceClass"
+}

@@ -1,0 +1,28 @@
+{
+  "jhipsterApp": {
+    "changeHistory": {
+      "home": {
+        "title": "Change Histories",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "创建新 Change History",
+        "createOrEditLabel": "创建或编辑 Change History",
+        "notFound": "No Change Histories found"
+      },
+      "created": "Change History {{ param }} 创建成功",
+      "updated": "Change History {{ param }} 更新成功",
+      "deleted": "Change History {{ param }} 删除成功",
+      "delete": {
+        "question": "你确定要删除 Change History {{ id }} 吗？"
+      },
+      "detail": {
+        "title": "Change History"
+      },
+      "id": "Id",
+      "describe": "Describe",
+      "help": {
+        "id": "变更主体 id",
+        "describe": "描述"
+      }
+    }
+  }
+}

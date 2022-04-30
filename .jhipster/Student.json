@@ -1,0 +1,52 @@
+{
+  "applications": ["jhipster"],
+  "changelogDate": "20220430065000",
+  "dto": "no",
+  "embedded": false,
+  "entityTableName": "student",
+  "fields": [
+    {
+      "fieldName": "name",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"],
+      "javadoc": "名称"
+    },
+    {
+      "fieldName": "age",
+      "fieldType": "Integer",
+      "fieldValidateRules": ["required"],
+      "javadoc": "年龄"
+    },
+    {
+      "fieldName": "number",
+      "fieldType": "Integer",
+      "fieldValidateRules": ["required"],
+      "javadoc": "学号"
+    },
+    {
+      "fieldName": "grade",
+      "fieldType": "GradeLevelType",
+      "fieldTypeJavadoc": "大一/大二/大三/大四",
+      "fieldValidateRules": ["required"],
+      "fieldValues": "ONE,TWO,THREE,FOUR",
+      "javadoc": "年级"
+    }
+  ],
+  "fluentMethods": true,
+  "javadoc": "学生",
+  "jpaMetamodelFiltering": true,
+  "name": "Student",
+  "pagination": "no",
+  "readOnly": false,
+  "relationships": [
+    {
+      "javadoc": "学生关联班级",
+      "otherEntityName": "classd",
+      "otherEntityRelationshipName": "student",
+      "ownerSide": true,
+      "relationshipName": "classd",
+      "relationshipType": "many-to-many"
+    }
+  ],
+  "service": "serviceClass"
+}
